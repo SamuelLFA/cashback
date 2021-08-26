@@ -17,7 +17,12 @@ class ResellerServiceTest {
     @Test
     void when_model_is_valid_should_success() {
         ResellerService resellerService = new ResellerService(resellerRepository);
-        Reseller model = new Reseller(1L, "Reseller", "00000000000", "email@email.com");
+        Reseller model = new Reseller();
+        model.setId(1L);
+        model.setName("Reseller");
+        model.setDocument("00000000000");
+        model.setEmail("email@email.com");
+        model.setPassword("123456");
 
         resellerService.create(model);
         Mockito.verify(resellerRepository, Mockito.times(1)).save(model);

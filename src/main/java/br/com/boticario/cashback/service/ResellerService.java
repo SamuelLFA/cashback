@@ -5,6 +5,8 @@ import br.com.boticario.cashback.repository.ResellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ResellerService {
 
@@ -17,5 +19,9 @@ public class ResellerService {
 
     public void create(Reseller model) {
         resellerRepository.save(model);
+    }
+
+    public Optional<Reseller> getByEmail(String email) {
+        return resellerRepository.findByEmail(email);
     }
 }

@@ -7,6 +7,7 @@ import br.com.boticario.cashback.model.Reseller;
 import br.com.boticario.cashback.service.ResellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,14 +23,17 @@ public class ResellerController {
 
     private final ResellerService resellerService;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    public ResellerController(ResellerService resellerService) {
+    public ResellerController(ResellerService resellerService, PasswordEncoder passwordEncoder) {
         this.resellerService = resellerService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping
     public ResponseEntity<ResellerDto> create(@Valid @RequestBody NewResellerForm form, UriComponentsBuilder uriBuilder) {
-        Reseller model = form.toModel();
+        Reseller model = form.toModel(passwordEncoder);
         resellerService.create(model);
 
         URI uri = uriBuilder.path("{path}/{id}").buildAndExpand(Paths.RESELLERS, model.getId()).toUri();

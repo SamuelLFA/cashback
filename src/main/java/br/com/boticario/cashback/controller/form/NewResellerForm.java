@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -29,12 +31,13 @@ public class NewResellerForm {
     @JsonProperty("senha")
     private String password;
 
-    public Reseller toModel() {
-        return new Reseller(
-                null,
-                name,
-                document,
-                email
-        );
+    public Reseller toModel(PasswordEncoder passwordEncoder) {
+        var reseller = new Reseller();
+        reseller.setName(name);
+        reseller.setDocument(document);
+        reseller.setPassword(passwordEncoder.encode(password));
+        reseller.setEmail(email);
+
+        return reseller;
     }
 }
