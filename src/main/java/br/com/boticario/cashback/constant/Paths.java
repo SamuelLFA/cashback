@@ -1,4 +1,4 @@
-package br.com.boticario.cashback.contant;
+package br.com.boticario.cashback.constant;
 
 public final class Paths {
 

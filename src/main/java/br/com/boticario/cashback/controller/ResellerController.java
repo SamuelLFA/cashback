@@ -1,6 +1,6 @@
 package br.com.boticario.cashback.controller;
 
-import br.com.boticario.cashback.contant.Paths;
+import br.com.boticario.cashback.constant.Paths;
 import br.com.boticario.cashback.controller.dto.ResellerDto;
 import br.com.boticario.cashback.controller.form.NewResellerForm;
 import br.com.boticario.cashback.model.Reseller;
