@@ -24,4 +24,8 @@ public class ResellerService {
     public Optional<Reseller> getByEmail(String email) {
         return resellerRepository.findByEmail(email);
     }
+
+    public Optional<Reseller> getByDocument(String document) {
+        return resellerRepository.findByDocument(document);
+    }
 }

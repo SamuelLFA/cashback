@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Collection;
 
-@Entity
+@Entity(name = "resellers")
 @Data
 @NoArgsConstructor
 public class Reseller implements UserDetails {

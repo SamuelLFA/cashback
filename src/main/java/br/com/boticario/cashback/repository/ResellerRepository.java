@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface ResellerRepository extends JpaRepository<Reseller, Long> {
 
     Optional<Reseller> findByEmail(String email);
+    Optional<Reseller> findByDocument(String document);
 }
